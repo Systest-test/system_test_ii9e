@@ -17,3 +17,14 @@ resource "aws_s3_bucket" "aws-s3-create-bucket-bc" {
     git_repo             = "test"
   })
 }
+
+resource "aws_s3_bucket" "aws-s3-create-bucket-bc_log_bucket" {
+  bucket = "aws-s3-create-bucket-bc-log-bucket"
+}
+
+resource "aws_s3_bucket_logging" "aws-s3-create-bucket-bc" {
+  bucket = aws_s3_bucket.aws-s3-create-bucket-bc.id
+
+  target_bucket = aws_s3_bucket.aws-s3-create-bucket-bc_log_bucket.id
+  target_prefix = "log/"
+}
