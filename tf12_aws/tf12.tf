@@ -10,6 +10,18 @@ resource "aws_s3_bucket" "public_read" {
   bucket = "my-tf-log-bucket"
   acl = "private"
 }
+
+resource "aws_s3_bucket" "public_read_log_bucket" {
+  bucket = "public_read-log-bucket"
+}
+
+resource "aws_s3_bucket_logging" "public_read" {
+  bucket = aws_s3_bucket.public_read.id
+
+  target_bucket = aws_s3_bucket.public_read_log_bucket.id
+  target_prefix = "log/"
+}
+
 resource "aws_s3_bucket" "public_read_write" {
   acl = "private"
 
