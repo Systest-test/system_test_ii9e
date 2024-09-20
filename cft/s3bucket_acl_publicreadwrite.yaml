@@ -30,7 +30,6 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Ref BucketName
-      AccessControl: PublicReadWrite
       Tags:
         - Key: tr:application-asset-insight-id
           Value: !Ref AssetId
